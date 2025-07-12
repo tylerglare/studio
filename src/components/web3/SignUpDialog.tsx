@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -16,6 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Zap, Loader2 } from 'lucide-react';
+import { Separator } from '../ui/separator';
 
 interface SignUpDialogProps {
   role: 'talent' | 'client';
@@ -30,6 +32,7 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
   const [jobTitle, setJobTitle] = useState('');
   const [location, setLocation] = useState('');
   const [isConnecting, setIsConnecting] = useState(false);
+  const [action, setAction] = useState<'signup' | 'login' | null>(null);
 
   const router = useRouter();
   const { isConnected } = useAccount();
@@ -55,11 +58,13 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
     // If connection process ends (e.g. user rejects), reset loading state
     if (status === 'idle' || status === 'error') {
       setIsConnecting(false);
+      setAction(null);
     }
   }, [status]);
 
 
   const handleCreateAccount = () => {
+    setAction('signup');
     setIsConnecting(true);
     if (!isConnected) {
       if (injectedConnector) {
@@ -68,9 +73,29 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
         // Handle case where no injected provider is found
         console.error("No wallet provider found. Please install a wallet extension like MetaMask.");
         setIsConnecting(false);
+        setAction(null);
       }
+    } else {
+      // Already connected, can proceed
+      router.push(redirectTo);
     }
   };
+
+  const handleLogin = () => {
+    setAction('login');
+    setIsConnecting(true);
+    if (!isConnected) {
+      if (injectedConnector) {
+        connect({ connector: injectedConnector });
+      } else {
+        console.error("No wallet provider found.");
+        setIsConnecting(false);
+        setAction(null);
+      }
+    } else {
+      router.push(redirectTo);
+    }
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -79,7 +104,7 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
           {buttonLabel}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Create Your {role === 'talent' ? 'Talent' : 'Client'} Profile</DialogTitle>
           <DialogDescription>
@@ -87,80 +112,65 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="col-span-3"
               placeholder="Your Name"
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
-              Email
-            </Label>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="col-span-3"
               placeholder="your@email.com"
             />
           </div>
           {role === 'talent' && (
             <>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="contact" className="text-right">
-                  Contact No.
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="contact">Contact No.</Label>
                 <Input
                   id="contact"
                   type="tel"
                   value={contactNumber}
                   onChange={(e) => setContactNumber(e.target.value)}
-                  className="col-span-3"
                   placeholder="Your contact number"
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="jobTitle" className="text-right">
-                  Job Title
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="jobTitle">Job Title</Label>
                 <Input
                   id="jobTitle"
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
-                  className="col-span-3"
                   placeholder="e.g., Frontend Developer"
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="location" className="text-right">
-                  Location
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="location">Location</Label>
                 <Input
                   id="location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="col-span-3"
                   placeholder="e.g., San Francisco, CA"
                 />
               </div>
             </>
           )}
         </div>
-        <DialogFooter>
+        <DialogFooter className="flex-col gap-2">
           <Button
             onClick={handleCreateAccount}
             disabled={!injectedConnector || isConnecting || !isFormComplete}
             className="w-full"
           >
-            {isConnecting ? (
+            {isConnecting && action === 'signup' ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Connecting...
@@ -170,6 +180,27 @@ export function SignUpDialog({ role, redirectTo }: SignUpDialogProps) {
                 <Zap className="mr-2 h-4 w-4" />
                 Connect Wallet & Create Account
               </>
+            )}
+          </Button>
+
+          <div className="relative my-2">
+            <Separator />
+            <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-background px-2 text-xs text-muted-foreground">OR</span>
+          </div>
+          
+          <Button
+            onClick={handleLogin}
+            variant="secondary"
+            disabled={!injectedConnector || isConnecting}
+            className="w-full"
+          >
+            {isConnecting && action === 'login' ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Connecting...
+              </>
+            ) : (
+              'Log In with Wallet'
             )}
           </Button>
         </DialogFooter>
