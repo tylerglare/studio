@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                     </Link>
                     <CardDescription>Due by {project.dueDate}</CardDescription>
                 </div>
-                 <Badge variant={getStatusVariant(project.status) as any}>{project.status}</Badge>
+                 <Badge variant={getStatusVariant(project.status) as any} className="shrink-0">{project.status}</Badge>
             </div>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -62,12 +62,12 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                     <Progress value={project.progress} className="h-2" />
                 </div>
             )}
-             <div className="flex items-center justify-between text-sm text-muted-foreground border-t pt-4 mt-4">
+             <div className="flex flex-wrap items-center justify-between text-sm text-muted-foreground border-t pt-4 mt-4 gap-4">
                 <div className="flex items-center gap-1">
                     <DollarSign className="w-4 h-4" />
                     <span>Budget: <span className="font-semibold text-foreground">${project.budget.toLocaleString()}</span></span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" asChild>
                         <Link href="/client/messages">
                             <MessageSquare className="mr-2 h-4 w-4" /> Message
