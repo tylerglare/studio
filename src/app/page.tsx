@@ -11,17 +11,31 @@ export default function HomePage() {
           <Link href="/" className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-8 h-8 text-primary"
+              viewBox="0 0 100 100"
+              className="w-8 h-8"
             >
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
+              <defs>
+                <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="50%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 1 }} />
+                  <stop offset="50%" style={{ stopColor: 'hsl(var(--accent))', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <g transform="rotate(30 50 50) translate(0 -5)">
+                <path 
+                  d="M35,20 A15,15 0 0 1 35,80 L65,80 A15,15 0 0 1 65,20 L35,20 Z" 
+                  stroke="hsl(var(--primary-foreground))" 
+                  strokeWidth="10" 
+                  fill="none" 
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M65,25 A15,15 0 0 1 65,75"
+                  stroke="hsl(var(--accent))"
+                  strokeWidth="10"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </g>
             </svg>
             <h1 className="text-2xl font-bold font-headline">
               <span className="text-primary">CTRL</span><span className="text-foreground">CHAIN</span>
