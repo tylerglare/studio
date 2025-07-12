@@ -102,7 +102,7 @@ export default function ClientProjectsPage() {
       </div>
       
       <Tabs defaultValue="ongoing">
-        <TabsList className="grid w-full grid-cols-3 md:w-[400px]">
+        <TabsList className="grid w-full grid-cols-3 md:w-auto">
             <TabsTrigger value="ongoing">Ongoing ({ongoingProjects.length})</TabsTrigger>
             <TabsTrigger value="completed">Completed ({completedProjects.length})</TabsTrigger>
             <TabsTrigger value="cancelled">Cancelled ({cancelledProjects.length})</TabsTrigger>
