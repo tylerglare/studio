@@ -154,7 +154,7 @@ export default function ClientMessagesPage() {
                       {msg.from === 'other' && <Avatar className="h-8 w-8"><AvatarImage src={selectedConversation.avatar} /></Avatar>}
                       <div>
                         <Card className={cn(
-                          "max-w-xs md:max-w-md p-3 rounded-2xl",
+                          "max-w-xs md:max-w-md lg:max-w-lg p-3 rounded-2xl",
                           msg.from === 'me' ? 'bg-primary text-primary-foreground rounded-br-none' : 'bg-secondary rounded-bl-none'
                         )}>
                           <p>{msg.text}</p>

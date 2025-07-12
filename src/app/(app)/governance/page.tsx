@@ -115,7 +115,7 @@ export default function GovernancePage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-start">
+      <div className="flex flex-wrap gap-4 justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold font-headline flex items-center gap-2">
             <Landmark className="w-8 h-8 text-accent" />
@@ -142,7 +142,7 @@ export default function GovernancePage() {
                      <CardDescription>{proposal.id}</CardDescription>
                      <CardTitle className="text-xl">{proposal.title}</CardTitle>
                   </div>
-                   <Badge className={`${getStatusColor(proposal.status)} text-white`}>{proposal.status}</Badge>
+                   <Badge className={`${getStatusColor(proposal.status)} text-white shrink-0`}>{proposal.status}</Badge>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -161,7 +161,7 @@ export default function GovernancePage() {
                   <Progress value={againstPercentage} className="h-2 [&>div]:bg-red-500" />
                 </div>
               </CardContent>
-               <CardFooter className="flex justify-between items-center text-sm text-muted-foreground">
+               <CardFooter className="flex flex-wrap gap-4 justify-between items-center text-sm text-muted-foreground">
                 <p>Voting ends {proposal.endDate}</p>
                 {proposal.status === "Active" ? (
                   <div className="flex gap-2">

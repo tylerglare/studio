@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -45,7 +46,7 @@ export default function FreelancerProfilePage({ params }: { params: { id: string
                     <span className="text-sm text-muted-foreground">({freelancer.reviews} reviews)</span>
                   </div>
                 </div>
-                <div className="flex gap-2 w-full sm:w-auto">
+                <div className="flex gap-2 w-full sm:w-auto shrink-0">
                   <Button variant="outline" className="flex-1 sm:flex-none"><MessageSquare className="mr-2 h-4 w-4" /> Message</Button>
                   <Button className="flex-1 sm:flex-none"><Briefcase className="mr-2 h-4 w-4" /> Hire Me</Button>
                 </div>
@@ -113,7 +114,7 @@ export default function FreelancerProfilePage({ params }: { params: { id: string
                     <h4 className="font-semibold">{service.title}</h4>
                     <p className="text-sm text-muted-foreground">{service.description}</p>
                   </div>
-                  <Badge variant="outline" className="text-md py-1 px-3 bg-background">
+                  <Badge variant="outline" className="text-md py-1 px-3 bg-background shrink-0 ml-2">
                     ${service.price}
                   </Badge>
                 </div>
