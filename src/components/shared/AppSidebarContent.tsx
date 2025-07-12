@@ -43,7 +43,7 @@ const talentLinks = [
 ];
 
 const clientLinks = [
-  { href: "/client/dashboard", label: "Find Talent", icon: Search },
+  { href: "/client/dashboard", label: "Find Services", icon: Search },
   { href: "/client/projects", label: "Services Acquired", icon: Briefcase },
   { href: "/client/wallet", label: "E-Wallet", icon: Wallet },
   { href: "/client/reviews", label: "Rate Services", icon: ClipboardCheck },
@@ -115,7 +115,7 @@ export function AppSidebarContent({ role }: { role: 'talent' | 'client' }) {
                   <p className="text-sm font-semibold text-sidebar-foreground truncate">
                     User Name
                   </p>
-                  <p className="text-xs text-sidebar-foreground/70 truncate">
+                  <p className="text-xs text-muted-foreground/70 truncate">
                     user@email.com
                   </p>
                 </div>

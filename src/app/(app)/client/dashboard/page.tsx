@@ -13,13 +13,13 @@ export default function ClientDashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Find Top-Tier Freelancers</h1>
-        <p className="text-muted-foreground">Discover the perfect talent for your next project.</p>
+        <h1 className="text-3xl font-bold font-headline">Discover Expert Services</h1>
+        <p className="text-muted-foreground">Find the perfect service to bring your project to life.</p>
       </div>
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-        <Input placeholder="Search by skill, name, or service (e.g., 'React developer')" className="pl-10 h-12" />
+        <Input placeholder="Search for services, skills, or freelancers..." className="pl-10 h-12" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

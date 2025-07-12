@@ -114,9 +114,9 @@ export default function ClientProjectsPage() {
                         <div className="flex flex-col items-center justify-center py-12 text-center">
                             <Briefcase className="w-12 h-12 mx-auto text-muted-foreground" />
                             <h3 className="mt-4 text-lg font-medium">No Ongoing Projects</h3>
-                            <p className="text-sm text-muted-foreground mt-1">Start a new project by hiring a freelancer.</p>
+                            <p className="text-sm text-muted-foreground mt-1">Start a new project by acquiring a service.</p>
                             <Button asChild className="mt-4">
-                                <Link href="/client/dashboard">Find Talent</Link>
+                                <Link href="/client/dashboard">Find Services</Link>
                             </Button>
                         </div>
                     </Card>
