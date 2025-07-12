@@ -93,9 +93,9 @@ export default function ClientProjectsPage() {
       <div>
         <h1 className="text-3xl font-bold font-headline flex items-center gap-2">
           <Briefcase className="w-8 h-8 text-accent" />
-          My Projects
+          Services Acquired
         </h1>
-        <p className="text-muted-foreground">Manage your ongoing and completed projects.</p>
+        <p className="text-muted-foreground">Manage your ongoing and completed services.</p>
       </div>
       
       <Tabs defaultValue="ongoing">
@@ -111,7 +111,7 @@ export default function ClientProjectsPage() {
                 ))}
                 {ongoingProjects.length === 0 && (
                     <Card className="lg:col-span-2">
-                        <div className="flex flex-col items-center justify-center py-12 text-center">
+                         <div className="flex flex-col items-center justify-center py-12 text-center">
                             <Briefcase className="w-12 h-12 mx-auto text-muted-foreground" />
                             <h3 className="mt-4 text-lg font-medium">No Ongoing Projects</h3>
                             <p className="text-sm text-muted-foreground mt-1">Start a new project by hiring a freelancer.</p>
@@ -146,7 +146,7 @@ export default function ClientProjectsPage() {
                 ))}
                 {cancelledProjects.length === 0 && (
                     <Card className="lg:col-span-2">
-                        <div className="flex flex-col items-center justify-center py-12 text-center">
+                         <div className="flex flex-col items-center justify-center py-12 text-center">
                             <XCircle className="w-12 h-12 mx-auto text-muted-foreground" />
                             <h3 className="mt-4 text-lg font-medium">No Cancelled Projects</h3>
                             <p className="text-sm text-muted-foreground mt-1">Any cancelled projects will be shown here.</p>
