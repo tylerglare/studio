@@ -6,9 +6,10 @@ import { usePathname } from 'next/navigation'
 import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebarContent } from '@/components/shared/AppSidebarContent'
 import { Button } from '@/components/ui/button'
-import { Bell, UserCircle, Star, Briefcase, Mail } from 'lucide-react'
+import { Bell, UserCircle, Star, Briefcase, Mail, Search } from 'lucide-react'
 import { ConnectWallet } from '@/components/web3/ConnectWallet'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -22,10 +23,18 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </Sidebar>
         <SidebarInset>
           <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
-            <SidebarTrigger className="md:hidden" />
-            <div className="flex-1">
-              {/* Could add breadcrumbs or page title here */}
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="md:hidden" />
+              <div className="relative hidden md:block">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search..."
+                  className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[300px]"
+                />
+              </div>
             </div>
+            
             <div className="flex items-center gap-4">
                <DropdownMenu>
                 <DropdownMenuTrigger asChild>
