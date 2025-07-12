@@ -24,7 +24,7 @@ export default function HomePage() {
             The Future of Freelancing is Empowerment.
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-            CtrlChain is a Web3-powered hub where freelancers and clients build, own, and govern together. Your work, your rules, your cooperative.
+            CTRLchain is a Web3-powered hub where freelancers and clients build, own, and govern together. Your work, your rules, your cooperative.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
