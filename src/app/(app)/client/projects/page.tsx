@@ -26,10 +26,10 @@ const getStatusVariant = (status: string) => {
 };
 
 const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
-    <Card>
+    <Card className="flex flex-col">
         <CardHeader>
-            <div className="flex justify-between items-start gap-4">
-                <div>
+            <div className="flex flex-wrap justify-between items-start gap-4">
+                <div className="flex-1">
                     <Link href={`/client/freelancer/${project.freelancer.id}`}>
                         <CardTitle className="text-xl hover:text-primary transition-colors">
                             {project.title}
@@ -40,7 +40,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                  <Badge variant={getStatusVariant(project.status) as any} className="shrink-0">{project.status}</Badge>
             </div>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 flex-1">
             <div className="flex items-center gap-4">
                  <Link href={`/client/freelancer/${project.freelancer.id}`}>
                     <Avatar>
@@ -48,9 +48,9 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                         <AvatarFallback>{project.freelancer.name.substring(0, 2)}</AvatarFallback>
                     </Avatar>
                  </Link>
-                <div>
-                    <p className="font-semibold">{project.freelancer.name}</p>
-                    <p className="text-sm text-muted-foreground">{project.freelancer.title}</p>
+                <div className="min-w-0">
+                    <p className="font-semibold truncate">{project.freelancer.name}</p>
+                    <p className="text-sm text-muted-foreground truncate">{project.freelancer.title}</p>
                 </div>
             </div>
             {project.status === 'In Progress' && (
@@ -62,8 +62,11 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                     <Progress value={project.progress} className="h-2" />
                 </div>
             )}
-             <div className="flex flex-wrap items-center justify-between text-sm text-muted-foreground border-t pt-4 mt-4 gap-4">
-                <div className="flex items-center gap-1">
+            
+        </CardContent>
+        <div className="border-t mt-4 p-6 pt-4">
+            <div className="flex flex-wrap items-center justify-between text-sm text-muted-foreground gap-4">
+                <div className="flex items-center gap-1 shrink-0">
                     <DollarSign className="w-4 h-4" />
                     <span>Budget: <span className="font-semibold text-foreground">${project.budget.toLocaleString()}</span></span>
                 </div>
@@ -78,7 +81,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
                     </Button>
                 </div>
             </div>
-        </CardContent>
+        </div>
     </Card>
 );
 
@@ -111,7 +114,7 @@ export default function ClientProjectsPage() {
                 ))}
                 {ongoingProjects.length === 0 && (
                     <Card className="lg:col-span-2">
-                         <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <div className="flex flex-col items-center justify-center py-12 text-center">
                             <Briefcase className="w-12 h-12 mx-auto text-muted-foreground" />
                             <h3 className="mt-4 text-lg font-medium">No Ongoing Projects</h3>
                             <p className="text-sm text-muted-foreground mt-1">Start a new project by hiring a freelancer.</p>
@@ -146,7 +149,7 @@ export default function ClientProjectsPage() {
                 ))}
                 {cancelledProjects.length === 0 && (
                     <Card className="lg:col-span-2">
-                         <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <div className="flex flex-col items-center justify-center py-12 text-center">
                             <XCircle className="w-12 h-12 mx-auto text-muted-foreground" />
                             <h3 className="mt-4 text-lg font-medium">No Cancelled Projects</h3>
                             <p className="text-sm text-muted-foreground mt-1">Any cancelled projects will be shown here.</p>
