@@ -29,6 +29,7 @@ import {
   Landmark,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Logo } from "./Logo";
 
 const talentLinks = [
   { href: "/talent/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -65,28 +66,7 @@ export function AppSidebarContent({ role }: { role: 'talent' | 'client' }) {
     <>
       <SidebarHeader>
         <Link href="/" className="flex items-center gap-2">
-           <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              className="w-8 h-8"
-            >
-              <g transform="rotate(30 50 50) translate(0 -5)">
-                <path 
-                  d="M35,20 A15,15 0 0 1 35,80 L65,80 A15,15 0 0 1 65,20 L35,20 Z" 
-                  stroke="hsl(var(--sidebar-primary-foreground))" 
-                  strokeWidth="10" 
-                  fill="none" 
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M65,25 A15,15 0 0 1 65,75"
-                  stroke="hsl(var(--sidebar-primary))"
-                  strokeWidth="10"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </g>
-            </svg>
+           <Logo className="w-8 h-8 text-sidebar-foreground" />
           <h1 className="text-xl font-semibold text-sidebar-foreground font-headline">
              <span className="text-sidebar-primary">CTRL</span><span className="text-sidebar-foreground">CHAIN</span>
           </h1>

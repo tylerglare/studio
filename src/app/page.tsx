@@ -2,6 +2,7 @@ import { Briefcase, Users } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { SignUpDialog } from '@/components/web3/SignUpDialog';
+import { Logo } from '@/components/shared/Logo';
 
 export default function HomePage() {
   return (
@@ -9,34 +10,7 @@ export default function HomePage() {
       <header className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              className="w-8 h-8"
-            >
-              <defs>
-                <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="50%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 1 }} />
-                  <stop offset="50%" style={{ stopColor: 'hsl(var(--accent))', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <g transform="rotate(30 50 50) translate(0 -5)">
-                <path 
-                  d="M35,20 A15,15 0 0 1 35,80 L65,80 A15,15 0 0 1 65,20 L35,20 Z" 
-                  stroke="hsl(var(--primary-foreground))" 
-                  strokeWidth="10" 
-                  fill="none" 
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M65,25 A15,15 0 0 1 65,75"
-                  stroke="hsl(var(--accent))"
-                  strokeWidth="10"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </g>
-            </svg>
+            <Logo className="w-8 h-8" />
             <h1 className="text-2xl font-bold font-headline">
               <span className="text-primary">CTRL</span><span className="text-foreground">CHAIN</span>
             </h1>
