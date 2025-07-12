@@ -19,10 +19,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <SidebarProvider>
       <div className="flex min-h-screen bg-background">
         <Sidebar>
-          {/* Content is now rendered in SidebarInset to ensure client-side rendering */}
+          <SidebarInset>
+            <AppSidebarContent role={role} />
+          </SidebarInset>
         </Sidebar>
-        <SidebarInset>
-          <AppSidebarContent role={role} />
+        <div className="flex flex-1 flex-col">
           <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="md:hidden" />
@@ -91,8 +92,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </Button>
             </div>
           </header>
-          <main className="p-4 sm:p-6 lg:p-8">{children}</main>
-        </SidebarInset>
+          <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
+        </div>
       </div>
     </SidebarProvider>
   )
