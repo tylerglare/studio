@@ -45,6 +45,7 @@ const talentLinks = [
 const clientLinks = [
   { href: "/client/dashboard", label: "Find Services", icon: Search },
   { href: "/client/projects", label: "Services Acquired", icon: Briefcase },
+  { href: "/client/messages", label: "Messages", icon: MessagesSquare },
   { href: "/client/wallet", label: "E-Wallet", icon: Wallet },
   { href: "/client/reviews", label: "Rate Services", icon: ClipboardCheck },
 ];
