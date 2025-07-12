@@ -21,7 +21,7 @@ export default function HomePage() {
       <main className="flex-grow flex items-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-6xl font-extrabold text-foreground mb-4 font-headline tracking-tight">
-            The Future of Freelancing is Control.
+            The Future of Freelancing is Empowerment.
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
             CtrlChain is a Web3-powered hub where freelancers and clients build, own, and govern together. Your work, your rules, your cooperative.
