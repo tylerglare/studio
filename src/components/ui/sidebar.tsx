@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -176,6 +177,11 @@ const Sidebar = React.forwardRef<
     ref
   ) => {
     const { isMobile, state } = useSidebar()
+    const [isClient, setIsClient] = React.useState(false)
+
+    React.useEffect(() => {
+      setIsClient(true)
+    }, [])
 
     if (collapsible === "none") {
       return (
@@ -191,8 +197,16 @@ const Sidebar = React.forwardRef<
         </div>
       )
     }
-    
-    if (isMobile) return null;
+
+    if (isMobile && isClient) {
+      return (
+        <main
+          className={cn("relative flex min-h-svh flex-1 flex-col bg-background")}
+        >
+          {children}
+        </main>
+      )
+    }
 
     return (
       <div
@@ -289,27 +303,27 @@ const SidebarInset = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"main">
 >(({ className, children, ...props }, ref) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const { isMobile, openMobile, setOpenMobile } = useSidebar()
+    const [isClient, setIsClient] = React.useState(false)
 
+    React.useEffect(() => {
+      setIsClient(true)
+    }, [])
+    
     if (isMobile) {
+      if (!isClient) return null
       return (
-        <main
-          ref={ref}
-          className={cn("relative flex min-h-svh flex-1 flex-col bg-background", className)}
-          {...props}
-        >
-            <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-                <SheetContent
-                    data-sidebar="sidebar"
-                    data-mobile="true"
-                    className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-                    style={{ '--sidebar-width': SIDEBAR_WIDTH_MOBILE } as React.CSSProperties}
-                    side="left"
-                >
-                    <div className="flex h-full w-full flex-col">{children}</div>
-                </SheetContent>
-            </Sheet>
-        </main>
+        <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+            <SheetContent
+                data-sidebar="sidebar"
+                data-mobile="true"
+                className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+                style={{ '--sidebar-width': SIDEBAR_WIDTH_MOBILE } as React.CSSProperties}
+                side="left"
+            >
+                <div className="flex h-full w-full flex-col">{children}</div>
+            </SheetContent>
+        </Sheet>
       )
     }
 
@@ -320,28 +334,9 @@ const SidebarInset = React.forwardRef<
                 "group peer flex h-full w-full flex-col text-sidebar-foreground",
                 className
             )}
-            data-state={state}
-            data-collapsible={state === "collapsed" ? "icon" : ""}
-            data-variant="sidebar"
-            data-side="left"
             {...props}
         >
-            <div
-                className={cn(
-                    "relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear",
-                    "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
-                )}
-            />
-            <div
-                className={cn(
-                    "fixed inset-y-0 left-0 z-10 flex h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear",
-                    "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l"
-                )}
-            >
-                <div data-sidebar="sidebar" className="flex h-full w-full flex-col bg-sidebar">
-                    {children}
-                </div>
-            </div>
+          {children}
         </div>
     );
 });
