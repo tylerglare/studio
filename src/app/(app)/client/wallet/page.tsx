@@ -20,6 +20,7 @@ import { DepositDialog } from "@/components/client/DepositDialog";
 import { DepositReceiptDialog, type ReceiptData } from "@/components/client/DepositReceiptDialog";
 
 const TOKEN_NAME = "CLT";
+const TOKEN_SYMBOL = "CLT";
 const PHP_TO_TOKEN_RATE = 1.00;
 
 const transactions = [
@@ -41,7 +42,7 @@ const chartData = [
 
 const chartConfig = {
   spending: {
-    label: "Spending (CLT)",
+    label: `Spending (${TOKEN_SYMBOL})`,
     color: "hsl(var(--primary))",
   },
 } satisfies ChartConfig

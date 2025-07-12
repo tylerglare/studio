@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Search, Star, MessageSquare, Briefcase } from "lucide-react";
 import { freelancers } from "@/lib/data";
 
+const TOKEN_NAME = "CLT";
+
 export default function ClientDashboardPage() {
   return (
     <div className="space-y-8">
@@ -47,7 +49,7 @@ export default function ClientDashboardPage() {
                     <Badge key={skill} variant="secondary">{skill}</Badge>
                   ))}
                 </div>
-                <p className="text-lg font-semibold text-right">${freelancer.price}<span className="text-sm font-normal text-muted-foreground">/hr</span></p>
+                <p className="text-lg font-semibold text-right">{freelancer.price} <span className="text-sm font-normal text-muted-foreground">{TOKEN_NAME}/hr</span></p>
               </CardContent>
               <CardFooter className="flex gap-2">
                 <Button variant="outline" className="w-full"><MessageSquare className="mr-2 h-4 w-4" /> Message</Button>

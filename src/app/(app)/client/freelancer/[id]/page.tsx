@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Star, MessageSquare, Briefcase, DollarSign, User, Award, Layers } from "lucide-react";
 import { freelancers } from "@/lib/data";
 
+const TOKEN_SYMBOL = "CLT";
+
 export default function FreelancerProfilePage({ params }: { params: { id: string } }) {
   const freelancer = freelancers.find(f => f.id === params.id);
 
@@ -115,7 +117,7 @@ export default function FreelancerProfilePage({ params }: { params: { id: string
                     <p className="text-sm text-muted-foreground">{service.description}</p>
                   </div>
                   <Badge variant="outline" className="text-md py-1 px-3 bg-background shrink-0 ml-2">
-                    ${service.price}
+                    {service.price} <span className="font-light ml-1.5">{TOKEN_SYMBOL}</span>
                   </Badge>
                 </div>
               ))}

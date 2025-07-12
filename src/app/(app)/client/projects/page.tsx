@@ -11,6 +11,7 @@ import { projects } from "@/lib/data";
 import { Briefcase, Calendar, MessageSquare, DollarSign, XCircle } from "lucide-react";
 import Link from "next/link";
 
+const TOKEN_SYMBOL = "CLT";
 
 const getStatusVariant = (status: string) => {
   switch (status) {
@@ -27,22 +28,20 @@ const getStatusVariant = (status: string) => {
 
 const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
     <Card className="flex flex-col">
-        <CardHeader>
-            <div className="flex flex-wrap justify-between items-start gap-4">
-                <div className="flex-1">
-                    <Link href={`/client/freelancer/${project.freelancer.id}`}>
-                        <CardTitle className="text-xl hover:text-primary transition-colors">
-                            {project.title}
-                        </CardTitle>
-                    </Link>
-                    <CardDescription>Due by {project.dueDate}</CardDescription>
-                </div>
-                 <Badge variant={getStatusVariant(project.status) as any} className="shrink-0">{project.status}</Badge>
+        <CardHeader className="flex-row flex-wrap items-start gap-4">
+            <div className="flex-1">
+                <Link href={`/client/freelancer/${project.freelancer.id}`}>
+                    <CardTitle className="text-xl hover:text-primary transition-colors">
+                        {project.title}
+                    </CardTitle>
+                </Link>
+                <CardDescription>Due by {project.dueDate}</CardDescription>
             </div>
+             <Badge variant={getStatusVariant(project.status) as any} className="shrink-0">{project.status}</Badge>
         </CardHeader>
         <CardContent className="space-y-4 flex-1">
             <div className="flex items-center gap-4">
-                 <Link href={`/client/freelancer/${project.freelancer.id}`}>
+                 <Link href={`/client/freelancer/${project.freelancer.id}`} className="shrink-0">
                     <Avatar>
                         <AvatarImage src={project.freelancer.image} alt={project.freelancer.name} data-ai-hint={project.freelancer.aiHint} />
                         <AvatarFallback>{project.freelancer.name.substring(0, 2)}</AvatarFallback>
@@ -64,22 +63,20 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => (
             )}
             
         </CardContent>
-        <div className="border-t mt-4 p-6 pt-4">
-            <div className="flex flex-wrap items-center justify-between text-sm text-muted-foreground gap-4">
-                <div className="flex items-center gap-1 shrink-0">
-                    <DollarSign className="w-4 h-4" />
-                    <span>Budget: <span className="font-semibold text-foreground">${project.budget.toLocaleString()}</span></span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" asChild>
-                        <Link href="/client/messages">
-                            <MessageSquare className="mr-2 h-4 w-4" /> Message
-                        </Link>
-                    </Button>
-                    <Button size="sm" asChild>
-                        <Link href={`/client/freelancer/${project.freelancer.id}`}>View Profile</Link>
-                    </Button>
-                </div>
+        <div className="border-t p-4 flex flex-wrap items-center justify-between text-sm text-muted-foreground gap-4">
+            <div className="flex items-center gap-1 shrink-0">
+                <DollarSign className="w-4 h-4" />
+                <span>Budget: <span className="font-semibold text-foreground">{project.budget.toLocaleString()} {TOKEN_SYMBOL}</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+                <Button variant="outline" size="sm" asChild>
+                    <Link href="/client/messages">
+                        <MessageSquare className="mr-2 h-4 w-4" /> Message
+                    </Link>
+                </Button>
+                <Button size="sm" asChild>
+                    <Link href={`/client/freelancer/${project.freelancer.id}`}>View Profile</Link>
+                </Button>
             </div>
         </div>
     </Card>
